@@ -1,5 +1,5 @@
 // https://docs.feathersjs.com/api/authentication/client.html
-import { AuthenticationService, JWTStrategy } from '@feathersjs/authentication'
+import { AuthenticationService, JWTStrategy, AuthenticationStrategy } from '@feathersjs/authentication'
 import { LocalStrategy } from '@feathersjs/authentication-local'
 
 import { Application } from './declarations'
@@ -10,8 +10,18 @@ declare module './declarations' {
   }
 }
 
+class StackBlitzAuthService extends AuthenticationService {
+  constructor (app: Application) {
+    super(app)
+  }
+  async create(data, params) {
+    delete params.secret
+    super.create(data, params)
+  }
+}
+
 export default function (app: Application) {
-  const authentication = new AuthenticationService(app)
+  const authentication = new StackBlitzAuthService(app)
 
   authentication.register('jwt', new JWTStrategy())
   authentication.register('local', new LocalStrategy())
