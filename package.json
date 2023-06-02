@@ -37,7 +37,9 @@
     "@feathersjs/socketio": "5.0.1",
     "@feathersjs/socketio-client": "5.0.1",
     "feathers-database": "npm:@feathersjs/memory@5.0.1",
+    "feathers-pinia": "^3.0.2",
     "helmet": "^5.1.0",
+    "pinia": "^2.1.3",
     "socket.io-client": "^4.6.1",
     "vue": "^3.2.47"
   },
