@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import MessageList from './MessageList.vue'
 defineProps<{ store: any }>()
-
+console.log(store.userList[1].avatar)
 </script>
 
 <template>
@@ -26,7 +26,7 @@ defineProps<{ store: any }>()
       <ul class="flex flex-column flex-1 list-unstyled user-list">
         <li v-for="user in store.userList">
           <a class="block relative" href="#">
-            <img src={{user.avatar}} alt="" class="avatar" crossorigin="anonymous">
+            <img :src="user.avatar" :alt="user.avatar" class="avatar" crossorigin="anonymous">
             <span class="absolute username">{{user.name}}</span>
           </a>
         </li>
