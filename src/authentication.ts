@@ -14,9 +14,10 @@ class StackBlitzAuthService extends AuthenticationService {
   constructor (app: Application) {
     super(app)
   }
-  async create(data, params) {
-    delete params.secret
-    super.create(data, params)
+  get configuration () {
+    const config = super.configuration
+    config.secret = null
+    return config
   }
 }
 
