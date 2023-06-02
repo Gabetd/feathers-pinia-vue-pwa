@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import MessageList from './MessageList.vue'
 defineProps<{ store: any }>()
-console.log(store.userList[1].avatar)
+
+
 </script>
 
 <template>
