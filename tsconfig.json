@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true
+  },
+  "include": [
+    "./client.ts",
+    "src/services/**/*.schema.ts",
+    "./env.d.ts",
+    "vue-client/**/*.ts",
+    "vue-client/**/*.d.ts",
+    "vue-client/**/*.tsx",
+    "vue-client/**/*.vue"
+  ],
+  "references": [{"path": "./tsconfig.node.json"}]
+}
