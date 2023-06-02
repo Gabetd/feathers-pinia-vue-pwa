@@ -2,8 +2,6 @@
 
 defineProps<{ messages: any }>()
 
-
-
 </script>
 
 <template >

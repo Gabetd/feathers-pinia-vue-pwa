@@ -1,7 +1,5 @@
 ## Feathers Playground
-
-[Open in StackBlitz](https://stackblitz.com/fork/github/feathersjs/playground/tree/main/starter)  
-[Open in CodeFlow](https://pr.new/github.com/feathersjs/playground)  
+[Open in CodeFlow](https://pr.new/https://github.com/Gabetd/feathers-pinia-vue-pwa)  
 
 A demo feathers-chat project for learning and demonstration purposes.
 

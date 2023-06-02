@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import {ref, reactive} from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
 // import CreateMessage from './components/CreateMessage.vue'
-import ChatView from './components/ChatView.vue'
-import LoginView from './components/LoginView.vue'
+import ChatPane from './components/ChatPane.vue'
+import LoginForm from './components/LoginForm.vue'
 // import MessageList from './components/MessageList.vue'
 /// <reference types="vite/client" />
 import {feathers} from '@feathersjs/feathers'
@@ -14,10 +13,10 @@ import io from 'socket.io-client'
 import type {MessagesResult} from './src/services/messages/messages.schema.js'
 import type {UsersData} from './src/services/users/users.schema.js'
 
-type Route = 'LoginView' | 'ChatView'
-let route: Route = ref('ChatView')
+type Route = 'LoginForm' | 'ChatPane'
+let route: Route = ref('ChatPane')
 // setTimeout(() => {
-//   route.value = 'ChatView'
+//   route.value = 'ChatPane'
 // }, 5000)
 // Establish a Socket.io connection
 const socket = io(import.meta.env.VITE_FV_URL, {
@@ -35,26 +34,13 @@ const escape = (str: any) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').re
 const appEl = document.getElementById('app') as HTMLDivElement
 const store = reactive({
   holiday: import.meta.env.VITE_HOLIDAY ? JSON.parse(import.meta.env.VITE_HOLIDAY) : {},
-  messages: []
+  messages: [],
+  userList: []
 })
 
 // Add a new user to the list
 const addUser = (user: UsersData) => {
-  const userList = document.querySelector('.user-list') as HTMLDivElement
-  if (userList === null) {
-    return // we can't add users without a user screen
-  }
-  userList.innerHTML += `<li>
-    <a class="block relative" href="#">
-      <img src="${user.avatar}" alt="" class="avatar" crossorigin="anonymous">
-      <span class="absolute username">${escape(user.name)}</span>
-    </a>
-  </li>`
-
-  // Update the number of users
-  const userCount = document.querySelectorAll('.user-list li').length
-  const onlineEl = document.querySelector('.online-count') as HTMLParagraphElement
-  onlineEl.innerText = '' + userCount
+  store.userList.push(user)
 }
 
 // Renders a message to the page
@@ -103,7 +89,7 @@ const showLogin = (error?: any) => {
 
 // Shows the chat page
 const showChat = async () => {
-  // appEl.innerHTML = ChatView
+  // appEl.innerHTML = ChatPane
 
   // Find the latest 25 messages. They will come with the newest first
   const messages = await client.service('messages').find({
@@ -251,8 +237,8 @@ globalThis.addEventListener('DOMContentLoaded', main)
 </script>
 
 <template>
-  <LoginView v-if="route === 'LoginView'" />
-  <ChatView v-else :store="store" />
+  <LoginForm v-if="route === 'LoginForm'" />
+  <ChatPane v-else :store="store" />
 </template>
 
 <style scoped>

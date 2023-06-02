@@ -2,7 +2,6 @@
 import MessageList from './MessageList.vue'
 defineProps<{ store: any }>()
 
-
 </script>
 
 <template>
@@ -20,11 +19,18 @@ defineProps<{ store: any }>()
     <aside class="sidebar col col-3 flex flex-column flex-space-between">
       <header class="flex flex-row flex-center">
         <h4 class="font-300 text-center">
-          <span class="font-600 online-count">0</span> users
+          <span class="font-600 online-count">{{store.userList.length}}</span> users
         </h4>
       </header>
 
-      <ul class="flex flex-column flex-1 list-unstyled user-list"></ul>
+      <ul class="flex flex-column flex-1 list-unstyled user-list">
+        <li v-for="user in store.userList">
+          <a class="block relative" href="#">
+            <img src={{user.avatar}} alt="" class="avatar" crossorigin="anonymous">
+            <span class="absolute username">{{user.name}}</span>
+          </a>
+        </li>
+      </ul>
       <footer class="flex flex-row flex-center">
         <a href="#" id="logout" class="button button-primary">
           Sign Out
