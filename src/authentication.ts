@@ -19,6 +19,7 @@ class StackBlitzAuthService extends AuthenticationService {
     config.secret = null
     return config
   }
+  async setup() {}
 }
 
 export default function (app: Application) {
